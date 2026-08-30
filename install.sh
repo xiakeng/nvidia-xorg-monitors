@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+config_file="${MONITORS_SETUP_CONFIG:-$project_dir/config.toml}"
+
+if [[ $EUID -ne 0 ]]; then
+    exec sudo -- "$0" "$@"
+fi
+
+exec python3 "$project_dir/monitors_setup.py" install --config "$config_file" "$@"
+

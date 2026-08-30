@@ -1,0 +1,49 @@
+version = 1
+
+[gpu]
+bus_id = "PCI:1:0:0"
+# NVIDIA display-device names from /var/log/Xorg.0.log.
+mode_validation = ["NoDisplayPortBandwidthCheck"]
+
+[install]
+xorg_config = "/etc/X11/xorg.conf"
+edid_directory = "/etc/X11/edid/monitors-setup"
+state_directory = "/var/lib/monitors-setup"
+display_manager = "lightdm"
+display = ":0"
+xauthority = "/var/run/lightdm/root/:0"
+restart = true
+verify_timeout_seconds = 15
+
+[[monitors]]
+name = "Stream-Left"
+connector = "DFP-1"
+primary = true
+default_mode = "1920x1200@60"
+modes = [
+  "1920x1080@60",
+  "1920x1080@120",
+  "1920x1200@60",
+  "1920x1200@120",
+  "2560x1440@60",
+  "2560x1440@120",
+  "3840x2160@60",
+  "3840x2160@120",
+]
+
+[[monitors]]
+name = "Stream-Right"
+connector = "DFP-3"
+primary = false
+default_mode = "1920x1200@60"
+modes = [
+  "1920x1080@60",
+  "1920x1080@120",
+  "1920x1200@60",
+  "1920x1200@120",
+  "2560x1440@60",
+  "2560x1440@120",
+  "3840x2160@60",
+  "3840x2160@120",
+]
+
